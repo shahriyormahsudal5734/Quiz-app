@@ -1,0 +1,182 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <title> {{the_post}} savollari</title>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/static/bootstrap.css">
+</head>
+
+<style>
+ body {
+  font-family:  sans-serif;
+}
+.navbar-brand {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 48px;
+  height: 48px;
+}
+.navbar-nav .nav-item:hover {
+  background-color: rgba(180, 190, 203, 0.4);
+}
+.noneb li{
+list-style: none;
+font-size: large;
+text-transform: capitalize;
+padding: 5px 0;
+
+}
+.noneb {
+  display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 10px;
+background: rgba( 195, 202, 201, 0.55 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 5px );
+-webkit-backdrop-filter: blur( 5px );
+height: 60vh;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.noneb button{
+border: none !important;
+  opacity: 5 !important;
+}
+#fdf{
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+}
+
+canvas{
+    border: 1px black solid;
+}
+#gg{
+    display: none;
+}
+
+</style>
+
+
+<body >
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<div class="container-fluid">
+          <a class="navbar-brand" href="/"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-md-auto gap-2">
+              <li class="nav-item rounded">
+                <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-fill me-2"></i>Home</a>
+              </li>
+              <li class="nav-item rounded">
+                <a class="nav-link" href="#"><i class="bi bi-people-fill me-2"></i>About</a>
+              </li>
+              <li class="nav-item rounded">
+                <a class="nav-link" href="#"><i class="bi bi-telephone-fill me-2"></i>Contact</a>
+              </li>
+
+            </ul>
+          </div>
+</div>
+
+</nav>
+
+
+
+<div id="quetions">
+{% for x in comments3 %}
+{% if x.category == the_post %}
+<div class="noneb " style="color: white;">
+
+  <li class="list-group-item"> {{x.title}}</li>
+
+  <button class="btn btn-primary w-75" onclick="if(this.id == 'ques{{x.id}}_{{x.monthh}}'){ b+=1 ,document.getElementById('ques{{x.id}}_{{x.monthh}}').disabled = 'true' , this.style.background = 'rgb(55, 198, 55)'}else{b+0,this.style.background = 'red',document.getElementById('ques{{x.id}}_{{x.monthh}}').style.background = 'rgb(55, 198, 55)',document.getElementById('ques{{x.id}}_{{x.monthh}}').disabled = 'true'} disa(this)" 
+id="ques{{x.id}}_1">{{ x.quiz1 }}</button>
+<button class="btn btn-primary w-75" onclick="if(this.id == 'ques{{x.id}}_{{x.monthh}}'){ b+=1 ,document.getElementById('ques{{x.id}}_{{x.monthh}}').disabled = 'true' , this.style.background = 'rgb(55, 198, 55)'}else{b+0,this.style.background = 'red',document.getElementById('ques{{x.id}}_{{x.monthh}}').style.background = 'rgb(55, 198, 55)',document.getElementById('ques{{x.id}}_{{x.monthh}}').disabled = 'true'}disa(this)" 
+id="ques{{x.id}}_2">{{ x.quiz2 }}</button>
+<button class="btn btn-primary w-75" onclick="if(this.id == 'ques{{x.id}}_{{x.monthh}}'){ b+=1 ,document.getElementById('ques{{x.id}}_{{x.monthh}}').disabled = 'true' , this.style.background = 'rgb(55, 198, 55)'}else{b+0,this.style.background = 'red',document.getElementById('ques{{x.id}}_{{x.monthh}}').style.background = 'rgb(55, 198, 55)',document.getElementById('ques{{x.id}}_{{x.monthh}}').disabled = 'true'}disa(this)" 
+id="ques{{x.id}}_3">{{ x.quiz3 }}</button>
+<button class="btn btn-primary w-75" onclick="if(this.id == 'ques{{x.id}}_{{x.monthh}}'){ b+=1 ,document.getElementById('ques{{x.id}}_{{x.monthh}}').disabled = 'true' , this.style.background = 'rgb(55, 198, 55)'}else{b+0,this.style.background = 'red',document.getElementById('ques{{x.id}}_{{x.monthh}}').style.background = 'rgb(55, 198, 55)',document.getElementById('ques{{x.id}}_{{x.monthh}}').disabled = 'true' }disa(this)" 
+id="ques{{x.id}}_4">{{ x.quiz4 }}</button>
+
+
+
+</div>
+{% else %}{% endif %}
+{% endfor %}
+
+</div>
+<button onclick="location.reload()">reload</button>
+
+<div id="fdshd">
+  <h1>sgsghdfjf</h1>
+  <input type="sfdhgfjh">
+</div>
+
+
+
+<script>
+
+addEventListener("click",()=>{
+  html2pdf().from(document.getElementById('fdshd')).save();
+})
+let b = 0
+function disa(num2){
+num2.parentElement.setAttribute('title','complete')
+
+let everyset = []
+for (const iterator of num2.parentElement.parentElement.children) {
+everyset.push(iterator.title)
+}
+
+
+ let ch = everyset.every((value, index,y) => {
+
+if (value == 'complete') {
+  return true
+}else{
+  return false
+}
+
+})
+
+
+if(ch == true){
+  localStorage.setItem('{{the_post}}',  `Sizning natijangiz ${b } / ${document.getElementById('quetions').children.length }`)
+  alert(localStorage.getItem('{{the_post}}'))
+
+}else{
+
+}
+
+}
+
+
+
+addEventListener("click",()=>{
+
+if(localStorage.getItem(b) == null){
+localStorage.setItem('result', b)
+}
+else{
+localStorage.setItem('result', b)
+}
+
+})
+
+
+
+
+
+console.log(localStorage.getItem('result'))
+
+</script>
+
+
+</body></html>
